@@ -85,40 +85,33 @@ body {
   color: #fff;
 }
 
-/* Clock */
-.clock-container {
+/* Zulu Clock */
+.zulu-time {
+  display: flex;
+  justify-content: flex-end; /* Right align */
+  align-items: center;
+  margin: 20px 30px 10px 30px;
+}
+.zulu-box {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin: 10px 15px;
-}
-.clock-label {
-  background-color: #2c2c2c;
   border: 2px solid #b22222;
   border-radius: 10px;
-  padding: 8px;
+  padding: 8px 14px;
+  font-size: 1rem;
   font-weight: bold;
-  color: #ffcc33;
-  font-size: 0.9em;
-  height: 30px;
-  display: flex;
-  align-items: center;
-}
-.time-box {
   background-color: #2c2c2c;
-  border: 2px solid #b22222;
-  border-radius: 10px;
-  padding: 6px 8px;
-  width: 40px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 0.9em;
+  box-shadow: 0 0 12px rgba(255, 204, 51, 0.25);
   color: #ffcc33;
-  box-shadow: 0 0 6px rgba(255, 204, 51, 0.4);
-  transition: box-shadow 0.3s ease;
 }
-.time-box:hover {
-  box-shadow: 0 0 10px rgba(255, 204, 51, 0.8);
+.zulu-box .label {
+  font-size: 0.9rem;
+  margin-right: 10px;
+  color: #ffcc33;
+}
+#zuluClock {
+  letter-spacing: 1px;
+  font-family: monospace;
 }
 
 /* Images */
@@ -266,42 +259,15 @@ body {
 
     <div class="panel widget">
       <strong>Solar Data</strong><br>
-      <iframe src="http://www.hamqsl.com/solar.html"></iframe>
+      <iframe src="https://www.hamqsl.com/solar.html"></iframe>
     </div>
 
     <div class="panel widget">
       <strong>Solar Data</strong><br>
-      <iframe src="http://www.hamqsl.com/solar2.html"></iframe>
+      <iframe src="https://www.hamqsl.com/solar2.html"></iframe>
     </div>
   </div>
 </div>
-
-<style>
-  .zulu-time {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 40px;
-    margin-top: 10px;
-  }
-
-  .zulu-box {
-    display: flex;
-    align-items: center;
-    border: 2px solid #00ffcc;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-size: 1.1rem;
-    background-color: rgba(0, 255, 204, 0.1);
-    box-shadow: 0 0 10px #00ffcc33;
-  }
-
-  .label {
-    font-size: 0.8rem;
-    margin-right: 8px;
-    color: #aaa;
-  }
-</style>
 
 <script>
   function updateZuluTime() {
