@@ -135,15 +135,14 @@
 </head>
 <body>
 
-<!-- Zulu Clock Top Left -->
+<!-- Zulu Clock Top Left (Julian Day / 117G style) -->
 <div id="zuluClockWrapper">
-  <div style="color:#ffcc33; font-weight:bold; font-size:0.75em; margin-bottom:2px;">Zulu Time</div>
+  <div style="color:#ffcc33; font-weight:bold; font-size:0.75em; margin-bottom:2px;">Zulu Time (117G Format)</div>
   <div class="clock-labels">
-    <div>MM</div><div>DD</div><div>HH</div><div>MIN</div><div>SEC</div>
+    <div>DDD</div><div>HH</div><div>MIN</div><div>SEC</div>
   </div>
   <div id="zuluClock117G">
-    <div class="clock-box">--</div>
-    <div class="clock-box">--</div>
+    <div class="clock-box">---</div>
     <div class="clock-box">--</div>
     <div class="clock-box">--</div>
     <div class="clock-box">--</div>
@@ -251,27 +250,31 @@
 </div>
 
 <script>
-// Zulu Clock
+// 117G-style Zulu clock with Julian day
 function updateZuluClock() {
   const now = new Date();
   const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-  const mo = String(utc.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(utc.getUTCDate()).padStart(2, '0');
+
+  // Calculate Julian day (day of year)
+  const start = new Date(Date.UTC(utc.getUTCFullYear(), 0, 0));
+  const diff = utc - start;
+  const oneDay = 1000 * 60 * 60 * 24;
+  const julianDay = Math.floor(diff / oneDay);
+
   const hr = String(utc.getUTCHours()).padStart(2, '0');
   const min = String(utc.getUTCMinutes()).padStart(2, '0');
   const sec = String(utc.getUTCSeconds()).padStart(2, '0');
 
   const boxes = document.querySelectorAll("#zuluClock117G .clock-box");
-  boxes[0].textContent = mo;
-  boxes[1].textContent = day;
-  boxes[2].textContent = hr;
-  boxes[3].textContent = min;
-  boxes[4].textContent = sec;
+  boxes[0].textContent = String(julianDay).padStart(3, '0');
+  boxes[1].textContent = hr;
+  boxes[2].textContent = min;
+  boxes[3].textContent = sec;
 }
 setInterval(updateZuluClock, 1000);
 updateZuluClock();
 
-// QRZ Log (API key included for testing, not secure on public page)
+// QRZ Log (API key included)
 const QRZ_API_KEY = "8C89-CE87-FCB0-D3DA";
 async function fetchQRZLog() {
     try {
