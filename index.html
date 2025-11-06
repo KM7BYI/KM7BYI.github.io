@@ -58,7 +58,7 @@
   }
 
   .header-panel .callsign { color: #ffcc33; font-size: 2.5em; font-weight: bold; }
-  .header-panel .name { color: #ffcc33; font-size: 1.5em; font-weight: bold; }
+  .header-panel .name { color: #cccccc; font-size: 1.5em; font-weight: bold; }
   .header-panel .location { color: #cccccc; }
 
   .footer {
@@ -69,7 +69,7 @@
     margin-top: 6px;
   }
 
-  img.profile-img, img.headshot {
+  img.profile-img, img.headshot, img.shack-img {
     border-color: #b22222;
     border-radius: 10px;
     border-style: solid;
@@ -106,6 +106,20 @@
     margin-top: 5px;
   }
 
+  table.qrz-log {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9em;
+  }
+  table.qrz-log th, table.qrz-log td {
+    border: 1px solid #ffcc33;
+    padding: 4px;
+  }
+  table.qrz-log th {
+    background-color: #b22222;
+    color: #ffcc33;
+  }
 </style>
 </head>
 <body>
@@ -172,6 +186,27 @@
       <strong>About Me</strong><br>
       Former U.S. Marine — <b><i>Semper Fi</i></b><br>
       Enjoy radio experimentation and digital networking.
+    </div>
+
+    <!-- Mobile Shack Snapshot -->
+    <div class="panel">
+      <strong>Mobile Shack Snapshot</strong><br>
+      <img src="/hampages/km7byi/shack.jpg" alt="Mobile Shack" class="shack-img">
+    </div>
+
+    <!-- Recent QSOs / QRZ Log -->
+    <div class="panel">
+      <strong>Recent QSOs / QRZ Log</strong><br>
+      <table class="qrz-log">
+        <thead>
+          <tr><th>Date</th><th>Callsign</th><th>Band</th><th>Mode</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2025-11-05</td><td>K7ABC</td><td>20m</td><td>SSB</td></tr>
+          <tr><td>2025-11-04</td><td>N0XYZ</td><td>40m</td><td>CW</td></tr>
+          <tr><td>2025-11-03</td><td>W1ZZZ</td><td>2m</td><td>FM</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- Profile Image -->
