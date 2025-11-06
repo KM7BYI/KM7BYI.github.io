@@ -49,7 +49,7 @@
   .header-panel .name { color: #cccccc; font-size: 1.6em; font-weight: bold; }
   .header-panel .location { color: #cccccc; }
 
-  /* Zulu Clock */
+  /* Zulu/Julian Clock */
   #zuluClockWrapper { display: flex; gap: 4px; font-family: monospace; margin-bottom: 10px; }
   .clock-box { border: 2px solid #ffcc33; background: linear-gradient(145deg, #2a2a2a, #1c1c1c); color: #ffcc33; padding: 4px 6px; font-weight: bold; font-size: 0.75em; text-align: center; border-radius: 4px; box-shadow: 0 0 4px rgba(255,204,51,0.6); display: flex; flex-direction: column; align-items: center; }
   .clock-label { font-size: 0.55em; color: #cccccc; }
@@ -57,7 +57,7 @@
   /* Images */
   img.profile-img, img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; max-width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
 
-  /* QRZ / HAMRS Log */
+  /* HAMRS Log */
   table.qrz-log { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9em; }
   table.qrz-log th, table.qrz-log td { border: 1px solid #ffcc33; padding: 5px; }
   table.qrz-log th { background: #b22222; color: #ffcc33; }
@@ -72,24 +72,12 @@
 </head>
 <body>
 
-<!-- Zulu Clock Top Left -->
+<!-- Zulu/Julian Clock Top Left -->
 <div id="zuluClockWrapper">
-  <div class="clock-box">
-    <div class="clock-label">DDD</div>
-    <div id="julianDay">---</div>
-  </div>
-  <div class="clock-box">
-    <div class="clock-label">HH</div>
-    <div id="hours">--</div>
-  </div>
-  <div class="clock-box">
-    <div class="clock-label">MIN</div>
-    <div id="minutes">--</div>
-  </div>
-  <div class="clock-box">
-    <div class="clock-label">SEC</div>
-    <div id="seconds">--</div>
-  </div>
+  <div class="clock-box"><div class="clock-label">DDD</div><div id="julianDay">---</div></div>
+  <div class="clock-box"><div class="clock-label">HH</div><div id="hours">--</div></div>
+  <div class="clock-box"><div class="clock-label">MIN</div><div id="minutes">--</div></div>
+  <div class="clock-box"><div class="clock-label">SEC</div><div id="seconds">--</div></div>
 </div>
 
 <!-- Menu -->
@@ -189,43 +177,44 @@
 </div>
 
 <script>
-// Zulu clock (117G Julian day format)
-function updateZuluClock() {
-  const now = new Date();
-  const utc = new Date(now.getTime() + now.getTimezoneOffset()*60000);
-  const start = new Date(Date.UTC(utc.getUTCFullYear(),0,0));
-  const diff = utc - start;
-  const julianDay = Math.floor(diff / (1000*60*60*24));
+// Zulu Clock with Julian Day
+function updateZuluJulianClock() {
+    const now = new Date();
+    const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
-  const hr = String(utc.getUTCHours()).padStart(2,'0');
-  const min = String(utc.getUTCMinutes()).padStart(2,'0');
-  const sec = String(utc.getUTCSeconds()).padStart(2,'0');
+    const startOfYear = new Date(Date.UTC(utc.getUTCFullYear(), 0, 0));
+    const diff = utc - startOfYear;
+    const julianDay = Math.floor(diff / (1000*60*60*24));
 
-  document.getElementById("julianDay").textContent = String(julianDay).padStart(3,'0');
-  document.getElementById("hours").textContent = hr;
-  document.getElementById("minutes").textContent = min;
-  document.getElementById("seconds").textContent = sec;
+    const HH = String(utc.getUTCHours()).padStart(2,'0');
+    const MIN = String(utc.getUTCMinutes()).padStart(2,'0');
+    const SEC = String(utc.getUTCSeconds()).padStart(2,'0');
+
+    document.getElementById("julianDay").textContent = String(julianDay).padStart(3,'0');
+    document.getElementById("hours").textContent = HH;
+    document.getElementById("minutes").textContent = MIN;
+    document.getElementById("seconds").textContent = SEC;
 }
-setInterval(updateZuluClock,1000);
-updateZuluClock();
+setInterval(updateZuluJulianClock, 1000);
+updateZuluJulianClock();
 
 // HAMRS Log fetch
 const HAMRS_API_KEY = "o7VuBAFoPELNnaQDgwwFyzvo";
 async function fetchHAMRSLog() {
   try {
-    const resp = await fetch(`https://hamrs.example.com/api/logs/recent?apiKey=${HAMRS_API_KEY}&limit=5`);
+    const resp = await fetch(`https://logger.hamrs.app/?token=${HAMRS_API_KEY}`);
     const data = await resp.json();
     const tbody = document.querySelector("#hamrsLogTable tbody");
-    tbody.innerHTML="";
-    data.forEach(qso=>{
-      const row = document.createElement("tr");
-      row.innerHTML=`<td>${qso.date}</td><td>${qso.callsign}</td><td>${qso.band}</td><td>${qso.mode}</td>`;
-      tbody.appendChild(row);
+    tbody.innerHTML = "";
+    data.slice(0,5).forEach(qso => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${qso.date}</td><td>${qso.callsign}</td><td>${qso.band}</td><td>${qso.mode}</td>`;
+      tbody.appendChild(tr);
     });
-  } catch(e){
-    console.error("HAMRS log fetch error:",e);
-    const tbody=document.querySelector("#hamrsLogTable tbody");
-    tbody.innerHTML="<tr><td colspan='4'>Unable to load HAMRS log</td></tr>";
+  } catch(err) {
+    const tbody = document.querySelector("#hamrsLogTable tbody");
+    tbody.innerHTML = "<tr><td colspan='4'>Unable to load HAMRS log.</td></tr>";
+    console.error(err);
   }
 }
 fetchHAMRSLog();
