@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KM7BYI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .left-column {
+      flex: 1;
+      min-width: 300px;
+      margin-right: 10px;
+    }
+
+    .right-column {
+      width: 240px;
+      min-width: 240px;
+      margin-left: 10px;
+    }
+
+    .panel {
+      background-color: #2a2a2a;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-left: 5px solid #ffcc33;
+    }
+
+    .header-panel {
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #b22222;
+      margin-bottom: 10px;
+      background-color: #2c2c2c;
+    }
+
+    .header-panel .callsign {
+      color: #ffcc33;
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+
+    .header-panel .name {
+      color: #ffcc33;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .header-panel .location {
+      color: #cccccc;
+    }
+
+    a {
+      color: #ffcc33;
+      text-decoration: none;
+    }
+
+    .footer {
+      text-align: center;
+      color: #ffcc33;
+      font-size: small;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+
+    img.profile-img {
+      border-color: #b22222;
+      border-radius: 10px;
+      border-style: solid;
+      border-width: 2px;
+      margin: 5px auto;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Zulu clock */
+    #zuluClock {
+      text-align: center;
+      padding: 6px;
+      border-radius: 8px;
+      border: 2px solid #b22222;
+      margin-bottom: 8px;
+      background-color: #2c2c2c;
+      font-size: 1em;
+      color: #ffcc33;
+      font-weight: bold;
+    }
+
+    .widget img {
+      width: 200px;
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Left Column -->
+  <div class="left-column">
+
+    <!-- Zulu Clock -->
+    <div id="zuluClock">--:--:-- UTC</div>
+
+    <!-- Callsign Header -->
+    <div class="header-panel">
+      <div class="callsign">KM7BYI</div>
+      <div class="name">Zachery M. Sheley</div>
+      <div class="location">Sierra Vista, Arizona USA</div>
+    </div>
+
+    <!-- Licenses Panel -->
+    <div class="panel">
+      <strong>Licenses</strong><br>
+      Amateur Radio – <b>KM7BYI</b><br>
+      GMRS – <b>WSJP454</b>
+    </div>
+
+    <!-- Contact Panel -->
+    <div class="panel">
+      <strong>Contact</strong><br>
+      If we’ve made contact, feel free to reach out:<br>
+      <a href="mailto:qso.km7byi@protonmail.com">qso.km7byi@protonmail.com</a>
+    </div>
+
+    <!-- Website Panel -->
+    <div class="panel">
+      <strong>Website</strong><br>
+      <a href="https://km7byi.github.io" target="_blank">https://km7byi.github.io</a>
+    </div>
+
+    <!-- Current Setup Panel -->
+    <div class="panel">
+      <strong>Current Setup</strong><br>
+      AnyTone AT‑778UVII on 2 m / 70 cm.<br>
+      Active on GMRS and CB Channel 19.<br>
+      Also on the mesh (915 MHz).
+    </div>
+
+    <!-- About Me Panel -->
+    <div class="panel">
+      <strong>About Me</strong><br>
+      Former U.S. Marine — <b><i>Semper Fi</i></b><br>
+      Enjoy radio experimentation and digital networking.
+    </div>
+
+    <!-- Profile Image -->
+    <img src="/hampages/km7byi/germans.jpg" alt="Myself and German Marines somewhere in the Baltics" class="profile-img">
+
+    <!-- Footer / Motto -->
+    <div class="footer">Improvise, Adapt, Overcome. GTFCU!</div>
+
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-column">
+
+    <!-- Solar Data Widget -->
+    <div class="panel widget" style="text-align:center;">
+      <strong>Solar Data</strong><br>
+      <a href="https://www.hamqsl.com/solar.html" target="_blank">
+        <img src="https://www.hamqsl.com/solar.php" alt="Solar-Terrestrial Data">
+      </a>
+    </div>
+
+    <!-- Band Conditions Widget -->
+    <div class="panel widget" style="text-align:center;">
+      <strong>Band Conditions</strong><br>
+      <a href="https://www.hamqsl.com/solar2.html" target="_blank">
+        <img src="https://www.hamqsl.com/solar2.php" alt="HF/VHF Band Conditions Banner">
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  // Zulu (UTC) Clock JavaScript
+  function updateZuluClock() {
+    const now = new Date();
+    const hours = String(now.getUTCHours()).padStart(2,'0');
+    const minutes = String(now.getUTCMinutes()).padStart(2,'0');
+    const seconds = String(now.getUTCSeconds()).padStart(2,'0');
+    document.getElementById('zuluClock').textContent = `${hours}:${minutes}:${seconds} UTC`;
+  }
+
+  // Update every second
+  setInterval(updateZuluClock, 1000);
+  updateZuluClock(); // initial call
+</script>
+
+</body>
+</html>
