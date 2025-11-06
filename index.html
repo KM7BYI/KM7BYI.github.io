@@ -56,7 +56,9 @@
     font-family: monospace;
     margin-bottom: 10px;
     justify-content: flex-start;
+    align-items: center;
   }
+  .clock-label-main { color:#ffcc33; font-size:0.75em; margin-right:6px; font-weight:bold; }
   .clock-box {
     border: 2px solid #ffcc33;
     background: linear-gradient(145deg, #2a2a2a, #1c1c1c);
@@ -75,8 +77,8 @@
 
   /* Images */
   img.profile-img { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; max-width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
-  img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
-  img.germans { border-color: #b22222; border-radius: 8px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; width: 40%; height: auto; opacity: 0.85; }
+  img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; width: 80%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
+  img.germans, img.second-img { border-color: #b22222; border-radius: 8px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; width: 40%; height: auto; opacity: 0.85; }
 
   /* HAMRS/QSO Log (manual) */
   table.qrz-log { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9em; }
@@ -95,6 +97,7 @@
 
 <!-- Zulu Clock -->
 <div id="zuluClockWrapper">
+  <div class="clock-label-main">Zulu:</div>
   <div class="clock-box"><div class="clock-label">HH</div><div id="hours">--</div></div>
   <div class="clock-box"><div class="clock-label">MIN</div><div id="minutes">--</div></div>
   <div class="clock-box"><div class="clock-label">SEC</div><div id="seconds">--</div></div>
@@ -171,6 +174,9 @@
 
     <!-- Subtle Germans Image -->
     <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines" class="germans">
+
+    <!-- Placeholder for second image -->
+    <img src="" alt="Second image placeholder" class="second-img">
 
     <!-- Footer -->
     <div class="footer">Improvise, Adapt, Overcome. GTFCU!</div>
