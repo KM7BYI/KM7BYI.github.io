@@ -1,295 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KM7BYI Station</title>
-<style>
-body {
-  background-color: #1c1c1c;
-  color: #f0f0f0;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KM7BYI | Amateur Radio Station</title>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0a0a0a 0%, #1a1a1a 100%);
+      color: #00ffcc;
+      font-family: 'Consolas', 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+    }
 
-/* Layout */
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 15px;
-  gap: 20px;
-}
-.left-column {
-  flex: 2;
-}
-.right-column {
-  flex: 1;
-}
+    header {
+      text-align: center;
+      padding: 20px 0 10px;
+    }
 
-/* Panels and header */
-.panel {
-  background-color: #2a2a2a;
-  border-radius: 10px;
-  border-left: 5px solid #ffcc33;
-  padding: 12px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 10px rgba(255, 204, 51, 0.1);
-}
-.header {
-  background-color: #2c2c2c;
-  border: 2px solid #b22222;
-  border-radius: 10px;
-  padding: 12px;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(178, 34, 34, 0.5);
-  margin-bottom: 15px; /* Added space below header */
-}
-.header span.callsign {
-  background: linear-gradient(to right, #ffcc33, #b22222);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: xx-large;
-  font-weight: bold;
-}
-.header span.name {
-  color: #ffcc33;
-  font-size: large;
-  font-weight: bold;
-}
-.header span.location {
-  color: #cccccc;
-}
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #00ffcc;
+    }
 
-/* Menu */
-.menu {
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(to right, #2c2c2c, #1c1c1c);
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 0 15px 10px 15px;
-}
-.menu a {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  color: #ffcc33;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-.menu a:hover {
-  background-color: #b22222;
-  color: #fff;
-}
+    header h2 {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-top: 8px;
+    }
 
-/* Clock */
-.clock-container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin: 10px 15px;
-}
-.clock-label {
-  background-color: #2c2c2c;
-  border: 2px solid #b22222;
-  border-radius: 10px;
-  padding: 8px;
-  font-weight: bold;
-  color: #ffcc33;
-  font-size: 0.9em;
-  height: 30px;
-  display: flex;
-  align-items: center;
-}
-.time-box {
-  background-color: #2c2c2c;
-  border: 2px solid #b22222;
-  border-radius: 10px;
-  padding: 6px 8px;
-  width: 40px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 0.9em;
-  color: #ffcc33;
-  box-shadow: 0 0 6px rgba(255, 204, 51, 0.4);
-  transition: box-shadow 0.3s ease;
-}
-.time-box:hover {
-  box-shadow: 0 0 10px rgba(255, 204, 51, 0.8);
-}
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
 
-/* Images */
-.images-row {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-.images-row img {
-  width: 40%;
-  border: 2px solid #b22222;
-  border-radius: 10px;
-  opacity: 0.9;
-  transition: transform 0.3s ease;
-}
-.images-row img:hover {
-  transform: scale(1.05);
-}
-.headshot {
-  width: 90%;
-  border-radius: 10px;
-  border: 2px solid #b22222;
-  display: block;
-  margin: 0 auto;
-}
+    nav a {
+      text-decoration: none;
+      color: #00ffcc;
+      margin: 0 15px;
+      font-size: 1.1rem;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
 
-/* Widgets */
-.widget iframe {
-  width: 100%;
-  height: 150px;
-  border: none;
-  border-radius: 8px;
-}
+    nav a:hover {
+      border-bottom: 2px solid #00ffcc;
+      color: #fff;
+    }
 
-/* Log table */
-.qrz-log {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9em;
-}
-.qrz-log th, .qrz-log td {
-  border-bottom: 1px solid #444;
-  padding: 5px 8px;
-  text-align: left;
-}
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+      align-items: start;
+    }
 
-/* Footer */
-.footer {
-  text-align: center;
-  color: #ffcc33;
-  font-size: small;
-  font-weight: bold;
-  margin-top: 6px;
-}
-.footer::after {
-  content: "";
-  display: block;
-  width: 50%;
-  height: 2px;
-  background: linear-gradient(to right, #b22222, #ffcc33);
-  margin: 6px auto 0 auto;
-  border-radius: 2px;
-}
-</style>
+    .zulu-time {
+      grid-column: 1 / span 3;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 40px;
+      margin-top: 10px;
+    }
+
+    .zulu-box {
+      display: flex;
+      align-items: center;
+      border: 2px solid #00ffcc;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 1.1rem;
+      background-color: rgba(0, 255, 204, 0.1);
+      box-shadow: 0 0 10px #00ffcc33;
+    }
+
+    .label {
+      font-size: 0.8rem;
+      margin-right: 8px;
+      color: #aaa;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      height: 260px;
+      border-radius: 8px;
+      background-color: #0d0d0d;
+      box-shadow: 0 0 10px #00ffcc33;
+    }
+
+    .images {
+      text-align: center;
+    }
+
+    .images img {
+      width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 12px #00ffcc55;
+      margin-bottom: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .images img:hover {
+      transform: scale(1.02);
+    }
+
+    .log-section {
+      grid-column: 1 / span 3;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-
-<!-- Zulu Clock -->
-<div class="clock-container">
-  <div class="clock-label">Zulu Time:</div>
-  <div id="hours" class="time-box">00</div>
-  <div id="minutes" class="time-box">00</div>
-  <div id="seconds" class="time-box">00</div>
-</div>
-
-<!-- Navigation Menu -->
-<div class="menu">
-  <a href="#">Home</a>
-  <a href="#">Log</a>
-  <a href="#">Setup</a>
-  <a href="#">Contact</a>
-</div>
-
-<div class="container">
-  <!-- Left Column -->
-  <div class="left-column">
-    <div class="header">
-      <span class="callsign">KM7BYI</span><br>
-      <span class="name">Zachery M. Sheley</span><br>
-      <span class="location">Sierra Vista, Arizona USA</span>
-    </div>
-
-    <div class="panel">
-      <strong>Licenses</strong><br>
-      Amateur Radio – <b>KM7BYI</b><br>
-      GMRS – <b>WSJP454</b>
-    </div>
-
-    <div class="panel">
-      <strong>Contact</strong><br>
-      If we’ve made contact, feel free to reach out:<br>
-      <span style="color:#ffcc33;"><b>qso.km7byi@protonmail.com</b></span>
-    </div>
-
-    <div class="panel">
-      <strong>Current Setup</strong><br>
-      AnyTone AT-778UVII on 2m / 70cm.<br>
-      Active on GMRS, CB19, and the mesh (915 MHz).
-    </div>
-
-    <div class="panel">
-      <strong>About Me</strong><br>
-      Former U.S. Marine — <b><i>Semper Fi</i></b><br>
-      Enjoy radio experimentation and digital networking.
-    </div>
-
-    <div class="panel">
-      <strong>Recent QSOs / Log</strong>
-      <table class="qrz-log">
-        <thead><tr><th>Date</th><th>Callsign</th><th>Band</th><th>Mode</th></tr></thead>
-        <tbody>
-          <tr><td>2025-11-06</td><td>K7ABC</td><td>2m</td><td>FM</td></tr>
-          <tr><td>2025-11-05</td><td>N0XYZ</td><td>70cm</td><td>FM</td></tr>
-          <tr><td>2025-11-04</td><td>W1AW</td><td>HF</td><td>SSB</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:0.8em; color:#cccccc;">(Update manually)</p>
-    </div>
-
-    <div class="images-row">
-      <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines">
-      <img src="https://via.placeholder.com/400x250?text=Coming+Soon" alt="Second image placeholder">
-    </div>
-
-    <div class="footer">Improvise, Adapt, Overcome. GTFCU!</div>
-  </div>
-
-  <!-- Right Column -->
-  <div class="right-column">
-    <div class="panel">
-      <strong>Headshot</strong><br>
-      <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/ns%202025-8.jpg" alt="Headshot" class="headshot">
-    </div>
-
-    <div class="panel widget">
-      <strong>Solar Data</strong><br>
-      <iframe src="http://www.hamqsl.com/solar.html"></iframe>
-    </div>
-
-    <div class="panel widget">
-      <strong>Solar Data</strong><br>
-      <iframe src="http://www.hamqsl.com/solar2.html"></iframe>
+  <div class="zulu-time">
+    <div class="zulu-box">
+      <span class="label">Zulu Time:</span>
+      <span id="zuluClock">--:--:--</span>
     </div>
   </div>
-</div>
 
-<script>
-function updateZuluClock() {
-  const now = new Date();
-  const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-  const HH = String(utc.getUTCHours()).padStart(2,'0');
-  const MIN = String(utc.getUTCMinutes()).padStart(2,'0');
-  const SEC = String(utc.getUTCSeconds()).padStart(2,'0');
-  document.getElementById("hours").textContent = HH;
-  document.getElementById("minutes").textContent = MIN;
-  document.getElementById("seconds").textContent = SEC;
-}
-setInterval(updateZuluClock, 1000);
-updateZuluClock();
-</script>
+  <header>
+    <h1>KM7BYI</h1>
+    <h2>Zach | Amateur Radio Operator</h2>
+  </header>
 
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Logbook</a>
+    <a href="#">Photos</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div>
+      <iframe src="https://www.hamqsl.com/solar.html" title="Solar Data 1"></iframe>
+      <iframe src="https://www.hamqsl.com/solar2.html" title="Solar Data 2"></iframe>
+    </div>
+
+    <div class="images">
+      <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/ns%202025-8.jpg" alt="Headshot">
+    </div>
+
+    <div class="images">
+      <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="With Germans">
+      <img src="https://via.placeholder.com/400x250/000000/00ffcc?text=Additional+Image" alt="Additional Placeholder">
+    </div>
+  </div>
+
+  <div class="log-section">
+    <h3>QSO / Logbook</h3>
+    <p>Manually update log entries here when ready.</p>
+  </div>
+
+  <footer>
+    <p>© 2025 KM7BYI | <a href="https://km7byi.github.io" target="_blank" style="color:#00ffcc;">Website</a></p>
+  </footer>
+
+  <script>
+    function updateZuluTime() {
+      const now = new Date();
+      const hh = String(now.getUTCHours()).padStart(2, '0');
+      const mm = String(now.getUTCMinutes()).padStart(2, '0');
+      const ss = String(now.getUTCSeconds()).padStart(2, '0');
+      document.getElementById('zuluClock').textContent = `${hh}:${mm}:${ss}`;
+    }
+    setInterval(updateZuluTime, 1000);
+    updateZuluTime();
+  </script>
 </body>
 </html>
