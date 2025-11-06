@@ -49,11 +49,33 @@
   .header-panel .name { color: #cccccc; font-size: 1.6em; font-weight: bold; }
   .header-panel .location { color: #cccccc; }
 
-  /* Zulu Clock */
-  #zuluClockWrapper { font-family: monospace; margin-bottom: 10px; font-size: 0.9em; text-align: left; color: #ffcc33; }
+  /* Zulu Clock - 117G style */
+  #zuluClockWrapper {
+    display: flex;
+    gap: 4px;
+    font-family: monospace;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+  }
+  .clock-box {
+    border: 2px solid #ffcc33;
+    background: linear-gradient(145deg, #2a2a2a, #1c1c1c);
+    color: #ffcc33;
+    padding: 4px 6px;
+    font-weight: bold;
+    font-size: 0.75em;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(255,204,51,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .clock-label { font-size: 0.55em; color: #cccccc; }
 
   /* Images */
-  img.profile-img, img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; max-width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
+  img.profile-img { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; max-width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
+  img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
 
   /* HAMRS/QSO Log (manual) */
   table.qrz-log { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9em; }
@@ -71,7 +93,11 @@
 <body>
 
 <!-- Zulu Clock -->
-<div id="zuluClockWrapper">Zulu Time: <span id="zuluTime">--:--:--</span> UTC</div>
+<div id="zuluClockWrapper">
+  <div class="clock-box"><div class="clock-label">HH</div><div id="hours">--</div></div>
+  <div class="clock-box"><div class="clock-label">MIN</div><div id="minutes">--</div></div>
+  <div class="clock-box"><div class="clock-label">SEC</div><div id="seconds">--</div></div>
+</div>
 
 <!-- Menu -->
 <div class="menu">
@@ -143,7 +169,7 @@
     </div>
 
     <!-- Profile Image -->
-    <img src="/hampages/km7byi/germans.jpg" alt="Me with German Marines" class="profile-img">
+    <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines" class="profile-img">
 
     <!-- Footer -->
     <div class="footer">Improvise, Adapt, Overcome. GTFCU!</div>
@@ -156,7 +182,7 @@
     <!-- Headshot -->
     <div class="panel">
       <strong>Headshot</strong><br>
-      <img src="/hampages/km7byi/headshot.jpg" alt="Headshot" class="headshot">
+      <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/ns%202025-8.jpg" alt="Headshot" class="headshot">
     </div>
 
     <!-- Solar Widget Top -->
@@ -175,17 +201,19 @@
 </div>
 
 <script>
-// Simple Zulu Time (HH:MM:SS UTC)
-function updateZuluTime() {
+// Zulu Clock HH:MM:SS UTC
+function updateZuluClock() {
   const now = new Date();
   const utc = new Date(now.getTime() + now.getTimezoneOffset()*60000);
   const HH = String(utc.getUTCHours()).padStart(2,'0');
   const MIN = String(utc.getUTCMinutes()).padStart(2,'0');
   const SEC = String(utc.getUTCSeconds()).padStart(2,'0');
-  document.getElementById("zuluTime").textContent = `${HH}:${MIN}:${SEC}`;
+  document.getElementById("hours").textContent = HH;
+  document.getElementById("minutes").textContent = MIN;
+  document.getElementById("seconds").textContent = SEC;
 }
-setInterval(updateZuluTime, 1000);
-updateZuluTime();
+setInterval(updateZuluClock, 1000);
+updateZuluClock();
 </script>
 
 </body>
