@@ -15,50 +15,10 @@
   a { color: #ffcc33; text-decoration: none; transition: color 0.3s; }
   a:hover { color: #b22222; }
 
-  /* Zulu Clock */
-  #zuluClockWrapper {
-    display: flex;
-    gap: 4px;
-    font-family: monospace;
-    margin-bottom: 10px;
-  }
-  .clock-box {
-    border: 2px solid #ffcc33;
-    background: linear-gradient(145deg, #2a2a2a, #1c1c1c);
-    color: #ffcc33;
-    padding: 4px 6px;
-    font-weight: bold;
-    font-size: 0.75em;
-    text-align: center;
-    border-radius: 4px;
-    box-shadow: 0 0 4px rgba(255,204,51,0.6);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .clock-label {
-    font-size: 0.55em;
-    color: #cccccc;
-  }
-
   /* Menu */
-  .menu {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  .menu a {
-    margin: 0 15px;
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: 1px solid #ffcc33;
-    transition: all 0.3s;
-  }
-  .menu a:hover {
-    background: #b22222;
-    color: #ffcc33;
-    transform: scale(1.05);
-  }
+  .menu { display: flex; justify-content: center; margin-bottom: 20px; }
+  .menu a { margin: 0 15px; padding: 6px 14px; border-radius: 6px; border: 1px solid #ffcc33; transition: all 0.3s; }
+  .menu a:hover { background: #b22222; color: #ffcc33; transform: scale(1.05); }
 
   /* Container & Columns */
   .container { display: flex; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; gap: 10px; }
@@ -73,11 +33,6 @@
     margin-bottom: 12px;
     border-left: 6px solid #ffcc33;
     box-shadow: 0 0 8px rgba(0,0,0,0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .panel:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.7);
   }
 
   /* Header Panel */
@@ -94,50 +49,30 @@
   .header-panel .name { color: #cccccc; font-size: 1.6em; font-weight: bold; }
   .header-panel .location { color: #cccccc; }
 
-  /* Images */
-  img.profile-img, img.headshot { 
-    border-color: #b22222; 
-    border-radius: 10px; 
-    border-style: solid; 
-    border-width: 2px; 
-    display: block; 
-    margin: 5px auto; 
-    max-width: 100%; 
-    height: auto; 
-    box-shadow: 0 0 8px rgba(178,34,34,0.5);
-  }
+  /* Zulu Clock */
+  #zuluClockWrapper { display: flex; gap: 4px; font-family: monospace; margin-bottom: 10px; }
+  .clock-box { border: 2px solid #ffcc33; background: linear-gradient(145deg, #2a2a2a, #1c1c1c); color: #ffcc33; padding: 4px 6px; font-weight: bold; font-size: 0.75em; text-align: center; border-radius: 4px; box-shadow: 0 0 4px rgba(255,204,51,0.6); display: flex; flex-direction: column; align-items: center; }
+  .clock-label { font-size: 0.55em; color: #cccccc; }
 
-  /* QRZ Log */
-  table.qrz-log {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 0.9em;
-  }
-  table.qrz-log th, table.qrz-log td {
-    border: 1px solid #ffcc33;
-    padding: 5px;
-  }
-  table.qrz-log th {
-    background: #b22222;
-    color: #ffcc33;
-  }
-  table.qrz-log tbody tr:hover {
-    background: rgba(255,204,51,0.1);
-    transition: background 0.3s;
-  }
+  /* Images */
+  img.profile-img, img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; max-width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
+
+  /* QRZ / HAMRS Log */
+  table.qrz-log { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9em; }
+  table.qrz-log th, table.qrz-log td { border: 1px solid #ffcc33; padding: 5px; }
+  table.qrz-log th { background: #b22222; color: #ffcc33; }
+  table.qrz-log tbody tr:hover { background: rgba(255,204,51,0.1); transition: background 0.3s; }
 
   /* Footer */
   .footer { text-align: center; color: #ffcc33; font-size: small; font-weight: bold; margin-top: 6px; text-shadow: 0 0 4px #ffcc33; }
 
   /* Solar Widget images */
   .widget img { width: 100%; border-radius: 6px; margin-top: 5px; box-shadow: 0 0 6px rgba(178,34,34,0.5); }
-
 </style>
 </head>
 <body>
 
-<!-- Zulu Clock Top Left (117G Julian day format) -->
+<!-- Zulu Clock Top Left -->
 <div id="zuluClockWrapper">
   <div class="clock-box">
     <div class="clock-label">DDD</div>
@@ -212,10 +147,10 @@
       Enjoy radio experimentation and digital networking.
     </div>
 
-    <!-- QRZ Log -->
+    <!-- HAMRS Log -->
     <div class="panel">
-      <strong>Recent QSOs / QRZ Log</strong><br>
-      <table class="qrz-log" id="qrzLogTable">
+      <strong>Recent QSOs / HAMRS Log</strong><br>
+      <table class="qrz-log" id="hamrsLogTable">
         <thead><tr><th>Date</th><th>Callsign</th><th>Band</th><th>Mode</th></tr></thead>
         <tbody><tr><td colspan="4">Loading...</td></tr></tbody>
       </table>
@@ -274,33 +209,26 @@ function updateZuluClock() {
 setInterval(updateZuluClock,1000);
 updateZuluClock();
 
-// QRZ Log (API)
-const QRZ_API_KEY="8C89-CE87-FCB0-D3DA";
-async function fetchQRZLog() {
+// HAMRS Log fetch
+const HAMRS_API_KEY = "o7VuBAFoPELNnaQDgwwFyzvo";
+async function fetchHAMRSLog() {
   try {
-    const resp = await fetch(`https://xmldata.qrz.com/xml/current/?s=${QRZ_API_KEY};type=logbook;limit=5`);
-    const text = await resp.text();
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(text,"application/xml");
-    const qsos = xml.querySelectorAll("QSO");
-    const tbody = document.querySelector("#qrzLogTable tbody");
+    const resp = await fetch(`https://hamrs.example.com/api/logs/recent?apiKey=${HAMRS_API_KEY}&limit=5`);
+    const data = await resp.json();
+    const tbody = document.querySelector("#hamrsLogTable tbody");
     tbody.innerHTML="";
-    qsos.forEach(qso=>{
-      const date=qso.querySelector("QSLDATE")?.textContent||qso.querySelector("DATE")?.textContent||"N/A";
-      const call=qso.querySelector("CALL")?.textContent||"N/A";
-      const band=qso.querySelector("BAND")?.textContent||"N/A";
-      const mode=qso.querySelector("MODE")?.textContent||"N/A";
-      const row=document.createElement("tr");
-      row.innerHTML=`<td>${date}</td><td>${call}</td><td>${band}</td><td>${mode}</td>`;
+    data.forEach(qso=>{
+      const row = document.createElement("tr");
+      row.innerHTML=`<td>${qso.date}</td><td>${qso.callsign}</td><td>${qso.band}</td><td>${qso.mode}</td>`;
       tbody.appendChild(row);
     });
   } catch(e){
-    console.error("QRZ log fetch error:",e);
-    const tbody=document.querySelector("#qrzLogTable tbody");
-    tbody.innerHTML="<tr><td colspan='4'>Unable to load QRZ log</td></tr>";
+    console.error("HAMRS log fetch error:",e);
+    const tbody=document.querySelector("#hamrsLogTable tbody");
+    tbody.innerHTML="<tr><td colspan='4'>Unable to load HAMRS log</td></tr>";
   }
 }
-fetchQRZLog();
+fetchHAMRSLog();
 </script>
 
 </body>
