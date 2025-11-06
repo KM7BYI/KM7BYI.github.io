@@ -58,7 +58,17 @@
     justify-content: flex-start;
     align-items: center;
   }
-  .clock-label-main { color:#ffcc33; font-size:0.75em; margin-right:6px; font-weight:bold; }
+  .clock-label-main {
+    border: 2px solid #ffcc33;
+    background: linear-gradient(145deg, #2a2a2a, #1c1c1c);
+    color: #ffcc33;
+    padding: 4px 6px;
+    font-weight: bold;
+    font-size: 0.75em;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(255,204,51,0.6);
+    text-align: center;
+  }
   .clock-box {
     border: 2px solid #ffcc33;
     background: linear-gradient(145deg, #2a2a2a, #1c1c1c);
@@ -77,8 +87,9 @@
 
   /* Images */
   img.profile-img { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; max-width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
-  img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; width: 80%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
-  img.germans, img.second-img { border-color: #b22222; border-radius: 8px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; width: 40%; height: auto; opacity: 0.85; }
+  img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; width: 85%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
+  .images-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  img.germans, img.second-img { border-color: #b22222; border-radius: 8px; border-style: solid; border-width: 2px; width: 40%; height: auto; opacity: 0.85; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
 
   /* HAMRS/QSO Log (manual) */
   table.qrz-log { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9em; }
@@ -97,7 +108,7 @@
 
 <!-- Zulu Clock -->
 <div id="zuluClockWrapper">
-  <div class="clock-label-main">Zulu:</div>
+  <div class="clock-label-main">Zulu Time:</div>
   <div class="clock-box"><div class="clock-label">HH</div><div id="hours">--</div></div>
   <div class="clock-box"><div class="clock-label">MIN</div><div id="minutes">--</div></div>
   <div class="clock-box"><div class="clock-label">SEC</div><div id="seconds">--</div></div>
@@ -162,7 +173,9 @@
     <div class="panel">
       <strong>Recent QSOs / Log</strong><br>
       <table class="qrz-log">
-        <thead><tr><th>Date</th><th>Callsign</th><th>Band</th><th>Mode</th></tr></thead>
+        <thead>
+          <tr><th>Date</th><th>Callsign</th><th>Band</th><th>Mode</th></tr>
+        </thead>
         <tbody>
           <tr><td>2025-11-06</td><td>K7ABC</td><td>2m</td><td>FM</td></tr>
           <tr><td>2025-11-05</td><td>N0XYZ</td><td>70cm</td><td>FM</td></tr>
@@ -172,11 +185,11 @@
       <p style="font-size:0.8em; color:#cccccc;">(Manually update this table as needed)</p>
     </div>
 
-    <!-- Subtle Germans Image -->
-    <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines" class="germans">
-
-    <!-- Placeholder for second image -->
-    <img src="" alt="Second image placeholder" class="second-img">
+    <!-- Germans & Second Image Row -->
+    <div class="images-row">
+      <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines" class="germans">
+      <img src="" alt="Second image placeholder" class="second-img">
+    </div>
 
     <!-- Footer -->
     <div class="footer">Improvise, Adapt, Overcome. GTFCU!</div>
@@ -211,7 +224,7 @@
 // Zulu Clock HH:MM:SS
 function updateZuluClock() {
   const now = new Date();
-  const utc = new Date(now.getTime() + now.getTimezoneOffset()*60000);
+  const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
   const HH = String(utc.getUTCHours()).padStart(2,'0');
   const MIN = String(utc.getUTCMinutes()).padStart(2,'0');
   const SEC = String(utc.getUTCSeconds()).padStart(2,'0');
@@ -225,3 +238,5 @@ updateZuluClock();
 
 </body>
 </html>
+
+        
