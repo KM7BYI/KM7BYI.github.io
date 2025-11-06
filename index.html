@@ -76,6 +76,7 @@
   /* Images */
   img.profile-img { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; max-width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
   img.headshot { border-color: #b22222; border-radius: 10px; border-style: solid; border-width: 2px; display: block; margin: 5px auto; width: 100%; height: auto; box-shadow: 0 0 8px rgba(178,34,34,0.5); }
+  img.germans { border-color: #b22222; border-radius: 8px; border-style: solid; border-width: 2px; display: block; margin: 10px auto; width: 40%; height: auto; opacity: 0.85; }
 
   /* HAMRS/QSO Log (manual) */
   table.qrz-log { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9em; }
@@ -168,8 +169,8 @@
       <p style="font-size:0.8em; color:#cccccc;">(Manually update this table as needed)</p>
     </div>
 
-    <!-- Profile Image -->
-    <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines" class="profile-img">
+    <!-- Subtle Germans Image -->
+    <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines" class="germans">
 
     <!-- Footer -->
     <div class="footer">Improvise, Adapt, Overcome. GTFCU!</div>
@@ -201,7 +202,7 @@
 </div>
 
 <script>
-// Zulu Clock HH:MM:SS UTC
+// Zulu Clock HH:MM:SS
 function updateZuluClock() {
   const now = new Date();
   const utc = new Date(now.getTime() + now.getTimezoneOffset()*60000);
