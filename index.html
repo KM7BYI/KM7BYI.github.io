@@ -25,7 +25,7 @@ body {
   flex: 2;
 }
 .right-column {
-  flex: 0 0 240px; /* fixed clean width for right side */
+  flex: 0 0 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,7 +136,7 @@ body {
   transform: scale(1.05);
 }
 .headshot {
-  width: 220px; /* slightly larger headshot */
+  width: 220px;
   height: auto;
   border-radius: 10px;
   border: 2px solid #b22222;
@@ -144,23 +144,9 @@ body {
   margin: 0 auto;
 }
 
-/* Compact panels for right column */
-.right-column .panel {
-  padding: 6px;
+/* Compact right-column panels */
+.right-column > div {
   width: 100%;
-  text-align: center;
-}
-
-/* Log table */
-.qrz-log {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9em;
-}
-.qrz-log th, .qrz-log td {
-  border-bottom: 1px solid #444;
-  padding: 5px 8px;
-  text-align: left;
 }
 
 /* Footer */
@@ -252,38 +238,38 @@ body {
     <div class="footer">Improvise, Adapt, Overcome. GTFCU!</div>
   </div>
 
-  <!-- Right Column -->
+  <!-- Right Column (Headshot + Solar/Band Panels) -->
   <div class="right-column">
-    <div class="panel">
+    <div style="background-color:#2a2a2a; border-radius:8px; border:2px solid #b22222; padding:10px; text-align:center">
       <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/ns%202025-8.jpg" alt="Headshot" class="headshot">
     </div>
 
-    <div class="panel">
+    <div style="background-color:#2a2a2a; border-radius:8px; border:2px solid #b22222; margin-bottom:10px; padding:10px; text-align:center">
       <strong>Solar Data</strong><br>
       <a href="https://www.hamqsl.com/solar.html" target="_blank" title="Current Solar-Terrestrial Data">
-        <img src="https://www.hamqsl.com/solar.php" alt="Solar-Terrestrial Data">
+        <img alt="Solar-Terrestrial Data" src="https://www.hamqsl.com/solar.php" style="border-radius:6px; margin-top:5px; width:200px">
       </a>
     </div>
 
-    <div class="panel">
+    <div style="background-color:#2a2a2a; border-radius:8px; border:2px solid #b22222; padding:10px; text-align:center">
       <strong>Band Conditions</strong><br>
       <a href="https://www.hamqsl.com/solar2.html" target="_blank" title="Current HF/VHF Band Conditions">
-        <img src="https://www.hamqsl.com/solar2.php" alt="HF/VHF Band Conditions Banner">
+        <img alt="HF/VHF Band Conditions Banner" src="https://www.hamqsl.com/solar2.php" style="border-radius:6px; margin-top:5px; width:200px">
       </a>
     </div>
   </div>
 </div>
 
 <script>
-  function updateZuluTime() {
-    const now = new Date();
-    const hh = String(now.getUTCHours()).padStart(2, '0');
-    const mm = String(now.getUTCMinutes()).padStart(2, '0');
-    const ss = String(now.getUTCSeconds()).padStart(2, '0');
-    document.getElementById('zuluClock').textContent = `${hh}:${mm}:${ss}`;
-  }
-  setInterval(updateZuluTime, 1000);
-  updateZuluTime();
+function updateZuluTime() {
+  const now = new Date();
+  const hh = String(now.getUTCHours()).padStart(2, '0');
+  const mm = String(now.getUTCMinutes()).padStart(2, '0');
+  const ss = String(now.getUTCSeconds()).padStart(2, '0');
+  document.getElementById('zuluClock').textContent = `${hh}:${mm}:${ss}`;
+}
+setInterval(updateZuluTime, 1000);
+updateZuluTime();
 </script>
 
 </body>
