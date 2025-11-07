@@ -166,6 +166,20 @@ body {
   margin: 6px auto 0 auto;
   border-radius: 2px;
 }
+
+  /* Log table */
+.qrz-log {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.qrz-log th, .qrz-log td {
+  border-bottom: 1px solid #444;
+  padding: 5px 8px;
+  text-align: left;
+}
+
 </style>
 </head>
 <body>
@@ -221,14 +235,15 @@ body {
 
     <div class="panel">
       <strong>Recent QSOs / Log</strong>
-      <table class="qrz-log">
-        <thead><tr><th>Date</th><th>Callsign</th><th>Band</th><th>Mode</th></tr></thead>
-        <tbody>
-          <tr><td>2025-11-06</td><td>KK7UIV</td><td>2m</td><td>FM</td></tr>
-        </tbody>
-      </table>
+        <table class="qrz-log">
+         <thead><tr><th>Date</th><th>Callsign</th><th>Band</th><th>Mode</th></tr></thead>
+          <tbody>
+            <tr><td>2025-11-06</td><td>KK7UIV</td><td>2m</td><td>FM</td></tr>
+          </tbody>
+        </table>
       <p style="font-size:0.8em; color:#cccccc;">(Log Updated Manually)</p>
     </div>
+
 
     <div class="images-row">
       <img src="https://raw.githubusercontent.com/KM7BYI/KM7BYI.github.io/refs/heads/main/germans.jpg" alt="Me with German Marines">
